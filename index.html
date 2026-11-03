@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Minal Sunil Borse · AI engineer for manufacturing and enterprise systems</title>
+<title>Minal Sunil Borse · AI engineer, LLM agents and business intelligence</title>
 <meta name="description" content="Portfolio of Minal Sunil Borse: the Werk Nord Control Tower, 19 AI copilots that trace problems across a company and price them in euros, plus AI, BI and SAP projects.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,6 +143,17 @@ section > .wrap > h2, .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); fo
 .register tr:last-child td { border-bottom: 0; }
 .register td a { font-weight: 650; }
 .tag { font-size: 0.82rem; color: var(--ink-soft); white-space: nowrap; }
+/* results may wrap (the first version reused .tag, which does not wrap, and squeezed the middle column) */
+.register .results { font-size: 0.88rem; color: var(--ink-soft); }
+.register { table-layout: fixed; }
+.register th:nth-child(1) { width: 24%; } .register th:nth-child(2) { width: 48%; } .register th:nth-child(3) { width: 28%; }
+.register td .tag { white-space: normal; }
+@media (max-width: 700px) {
+  .register, .register tbody, .register tr, .register td { display: block; width: auto; }
+  .register thead { display: none; }
+  .register tr { border-bottom: 1px solid var(--rule); padding: 8px 0; }
+  .register td { border: 0; padding: 4px 14px; }
+}
 
 /* how I work */
 .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -151,7 +162,7 @@ section > .wrap > h2, .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); fo
 @media (max-width: 760px) { .principles { grid-template-columns: 1fr; } }
 
 /* skills */
-.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 32px; }
 .skills h3 { margin: 0 0 6px; font-size: 1rem; font-stretch: 112%; }
 .skills p { margin: 0; color: var(--ink-soft); }
 @media (max-width: 760px) { .skills { grid-template-columns: 1fr; } }
@@ -162,6 +173,17 @@ section > .wrap > h2, .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); fo
 .contact a { color: var(--paper); }
 .contact p { color: var(--paper); opacity: 0.85; }
 footer { padding: 28px 0 48px; color: var(--ink-soft); font-size: 0.9rem; }
+
+
+/* experience: a timeline (a real sequence, newest first) */
+.timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--rule); }
+.timeline li { position: relative; padding: 0 0 26px 24px; }
+.timeline li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--steel); }
+.timeline h3 { margin: 0; font-size: 1.15rem; font-stretch: 112%; }
+.timeline .when { color: var(--ink-soft); font-size: 0.95rem; margin: 2px 0 8px; }
+.timeline ul { margin: 6px 0 0; padding-left: 1.1em; }
+.timeline li li { padding: 0; margin: 3px 0; }
+.timeline li li::before { display: none; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
@@ -174,7 +196,9 @@ footer { padding: 28px 0 48px; color: var(--ink-soft); font-size: 0.9rem; }
     <nav class="nav" aria-label="Main">
       <a href="#control-tower">Control Tower</a>
       <a href="#copilots">Copilots</a>
+      <a href="#experience">Experience</a>
       <a href="#projects">More projects</a>
+      <a href="#education">Education</a>
       <a href="#approach">How I work</a>
       <a href="#contact">Contact</a>
       <button class="theme" id="theme" type="button">Dark mode</button>
@@ -185,7 +209,7 @@ footer { padding: 28px 0 48px; color: var(--ink-soft); font-size: 0.9rem; }
   <main>
   <div class="hero">
     <h1>I build AI systems that find out why a company loses money.</h1>
-    <p class="lede">AI engineer (Turing College) focused on manufacturing and enterprise processes. My main project connects 19 AI copilots that trace a problem across departments, price it in euros, and let the right person decide what to do.</p>
+    <p class="lede">AI engineer with 4+ years in business intelligence and analytics: 15+ SAP Analytics Cloud dashboards for stakeholders in 5+ countries, and now 12+ AI systems built. My main project connects 19 AI copilots that trace a problem across departments, price it in euros, and let the right person decide what to do.</p>
     <div class="actions">
       <a class="btn primary" href="https://github.com/MinalBorse/control-tower">See the Control Tower on GitHub</a>
       <a class="btn" href="#contact">Get in touch</a>
@@ -281,10 +305,60 @@ footer { padding: 28px 0 48px; color: var(--ink-soft); font-size: 0.9rem; }
     </div>
   </section>
 
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+    <p class="intro">From SAP dashboards used in five countries to AI agents that are tested against ground truth.</p>
+    <ol class="timeline">
+      <li>
+        <h3>AI Engineering Bootcamp</h3>
+        <p class="when">Turing College, remote · 09/2026 to 12/2026</p>
+        <ul>
+          <li>Production-style LLM systems, each evaluated against ground truth and secured with guardrails and tests.</li>
+          <li>Built the Werk Nord Control Tower: 19 AI copilots, cause chains across 32 departments, governance and human approval.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Business Intelligence Specialist</h3>
+        <p class="when">Coster Special Technologies S.p.A., Milan, Italy · 03/2024 to 06/2026</p>
+        <ul>
+          <li>Designed and developed 15+ interactive SAP Analytics Cloud dashboards in Analytics Designer and SAP Datasphere across six functions: finance, supply chain, logistics, procurement, HR and manufacturing.</li>
+          <li>Built and optimised ETL pipelines and ABAP CDS data models (basic, composite and consumption views, VDM standards) on SAP BW and S/4HANA, improving query speed by up to 90 %.</li>
+          <li>Built Python and scikit-learn workflows on historical enterprise data to automate predictive risk assessment for key operational metrics.</li>
+          <li>Cut decision-making time by 70 % with real-time production and stock visibility, resolved data requests 50 % faster, and reached 100 % user adoption across 5+ countries.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Product Owner and Data Analyst</h3>
+        <p class="when">Zeiss Digital Partners, Munich · 07/2023 to 10/2023</p>
+        <ul>
+          <li>Integrated SAP ERP and CRM data in Azure Synapse Analytics and built Power BI KPI reports across production, supply chain and customer 360.</li>
+          <li>Presented a roadmap and budget that secured project approval.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Product Data Analyst II</h3>
+        <p class="when">Cuponation GmbH, Munich · 02/2022 to 06/2023</p>
+        <ul>
+          <li>Cleaned and structured event and transaction data with SQL, PySpark and Python from AWS Athena and Redshift Spectrum, improving data quality by 30 %.</li>
+          <li>Created 20+ automated Tableau dashboards and A/B testing frameworks; applied cohort analysis and causal inference to surface churn risk.</li>
+        </ul>
+      </li>
+      <li>
+        <h3>Working Student, Technology Development and Innovation</h3>
+        <p class="when">Airbus Defence and Space, Munich · 04/2019 to 09/2020</p>
+        <ul>
+          <li>Member of the EUROCAE WG-114 and SAE G-34 working groups on certifying AI in aviation: classified AI techniques, investigated AI safety and security, and ran a gap analysis of autonomous versus classical systems.</li>
+          <li>Analysed web tracking data and built web apps, contributing to 20 % more web traffic.</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+
   <!-- ================= OTHER PROJECTS ================= -->
   <section id="projects">
     <h2 class="section-title">More projects</h2>
-    <p class="intro">AI assistants, BI and SAP tools I built before and during the course. Filter by topic.</p>
+    <p class="intro">AI agents, BI and SAP tools, each with its own evaluation. Filter by topic.</p>
     <div class="filters" role="group" aria-label="Filter projects">
       <button type="button" data-filter="all" aria-pressed="true">All</button>
       <button type="button" data-filter="ai">AI assistants</button>
@@ -294,26 +368,24 @@ footer { padding: 28px 0 48px; color: var(--ink-soft); font-size: 0.9rem; }
       <button type="button" data-filter="apps">Apps</button>
     </div>
     <div class="register-wrap">
-      <!-- Check each one-line description and adjust it to what the project really does. -->
       <table class="register" id="register">
-        <thead><tr><th scope="col">Project</th><th scope="col">What it does</th><th scope="col">Topic</th></tr></thead>
+        <thead><tr><th scope="col">Project</th><th scope="col">What it does</th><th scope="col">Results</th></tr></thead>
         <tbody>
-          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Sprint-3-AIDataAnalyst">AI Data Analyst</a></td><td>An agent that analyses data sets and explains the results (Turing College, sprint 3).</td><td class="tag">AI assistants</td></tr>
-          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Sprint-2home-barista-assistant">Home Barista Assistant</a></td><td>A RAG chatbot with tool calling for home coffee brewing (LangChain and Streamlit, sprint 2).</td><td class="tag">AI assistants</td></tr>
-          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Sprint-1ProjectInterview-App">Interview Practice App</a></td><td>Practice job interviews with an AI interviewer (Streamlit and OpenRouter, sprint 1). <a href="https://github.com/MinalBorse/interview-app-v2">Version 2</a>.</td><td class="tag">AI assistants</td></tr>
-          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Report-Insignt-Crew">Report Insight Crew</a></td><td>A team of agents that reads reports and writes the key insights.</td><td class="tag">AI assistants</td></tr>
-          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Customer-Intelligence-Feedback-lens">Customer Feedback Lens</a></td><td>Turns customer feedback into themes, sentiment and actions.</td><td class="tag">AI assistants</td></tr>
-          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Portfolio-Pilot">Portfolio Pilot</a></td><td>An assistant for analysing an investment portfolio.</td><td class="tag">AI assistants</td></tr>
-          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Ask-Your-Data">Ask Your Data</a></td><td>Ask questions about your data in plain language and get answers and charts.</td><td class="tag">BI and data</td></tr>
-          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Self-Healing-BI">Self-Healing BI</a></td><td>Finds broken reports and data problems and proposes fixes.</td><td class="tag">BI and data</td></tr>
-          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Excel-to-PowerBI">Excel to Power BI</a></td><td>Helps move Excel reports into Power BI.</td><td class="tag">BI and data</td></tr>
-          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Migration-Assistant-Tableau-to-PowerBI-">Tableau to Power BI Migration Assistant</a></td><td>Helps migrate Tableau dashboards to Power BI.</td><td class="tag">BI and data</td></tr>
-          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/DB-Bahn-Delay-Radar">DB Bahn Delay Radar</a></td><td>Analyses Deutsche Bahn train delays.</td><td class="tag">BI and data</td></tr>
-          <tr data-topic="sap"><td><a href="https://github.com/MinalBorse/SAP-Process-Mining-Assistant">SAP Process Mining Assistant</a></td><td>Finds bottlenecks and deviations in SAP processes.</td><td class="tag">SAP</td></tr>
-          <tr data-topic="sap"><td><a href="https://github.com/MinalBorse/SAP-BI-Assistance">SAP BI Assistant</a></td><td>An assistant for SAP reporting and analytics. <a href="https://github.com/MinalBorse/SAP-BI-Assistance-Basic">Basic version</a>.</td><td class="tag">SAP</td></tr>
-          <tr data-topic="trust"><td><a href="https://github.com/MinalBorse/GDPR-Privacy-Guard">GDPR Privacy Guard</a></td><td>Detects and protects personal data.</td><td class="tag">Privacy and fairness</td></tr>
-          <tr data-topic="trust"><td><a href="https://github.com/MinalBorse/AI-Fairness-Auditor">AI Fairness Auditor</a></td><td>Checks AI models and data for unfair bias.</td><td class="tag">Privacy and fairness</td></tr>
-          <tr data-topic="apps"><td><a href="https://github.com/MinalBorse/skillmarker-mobile">Skillmarker</a></td><td>A skills app, with a <a href="https://github.com/MinalBorse/skillmarker">web version</a> and a mobile version.</td><td class="tag">Apps</td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Ask-Your-Data">Ask Your Data</a><br><span class="tag">Conversational BI analyst</span></td><td>A LangGraph ReAct agent with 9 tools (SQL, charts, anomaly detection, hybrid RAG, memory) over 80,000 orders, with human-approved plans and 6 security layers.</td><td class="results">Routing 100 %, tool selection 92 %, faithfulness 0.96; few-shot beat chain-of-thought for text-to-SQL (88 % vs 25 %)</td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Report-Insignt-Crew">Insight Crew</a><br><span class="tag">Multi-agent weekly reports</span></td><td>Planner, parallel analysts, writer and critic agents with code-verified KPIs, human review, and automated PDF, Slack and email delivery via GitHub Actions.</td><td class="results">9 of 9 planted errors caught; compared with a single agent: similar quality at 10 times the cost</td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Customer-Intelligence-Feedback-lens">Feedback Lens</a><br><span class="tag">Multilingual feedback intelligence</span></td><td>Cleans (PII removal, injection quarantine), classifies, embeds and clusters 5,000+ reviews in 4 languages, with a citation-verified Q&amp;A agent.</td><td class="results">Sentiment 95 %, topic F1 0.92, 0.03 USD per 1,000 reviews</td></tr>
+          <tr data-topic="sap"><td><a href="https://github.com/MinalBorse/SAP-Process-Mining-Assistant">SAP Process Mining Assistant</a><br><span class="tag">Order-to-cash optimisation</span></td><td>Builds event logs from SAP order-to-cash tables, finds where the process loses time and money, tests root causes statistically and simulates fixes with AI agents.</td><td class="results">Evaluation 97 %, live demo</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Migration-Assistant-Tableau-to-PowerBI-">Tableau to Power BI Migration Assistant</a><br><span class="tag">AI migration agent</span></td><td>A LangGraph agent that reads Tableau workbooks, translates formulas to DAX (rules plus LLM), self-checks and fixes errors, maps visuals and exports reports, with injection detection and human approval.</td><td class="results">100 % on 33 test cases, 71 tests, public demo</td></tr>
+          <tr data-topic="trust"><td><a href="https://github.com/MinalBorse/AI-Fairness-Auditor">AI Governance and Fairness Auditor</a><br><span class="tag">Responsible AI audit</span></td><td>Audits AI decision systems such as loan models for discrimination, separates legitimate from unfair gaps, detects hidden proxies, and writes the audit with five AI agents.</td><td class="results">Evaluation 94 %, EU AI Act</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Self-Healing-BI">Self-Healing BI</a><br><span class="tag">Data-pipeline repair agent</span></td><td>A LangGraph agent that diagnoses schema drift and data-quality failures, applies safe fixes, verifies them and remembers incidents (RAG with ChromaDB); privacy gate, read-only text-to-SQL, MCP, Docker.</td><td class="results">13 evaluation scenarios, 5 attack tests, CI</td></tr>
+          <tr data-topic="apps"><td><a href="https://github.com/MinalBorse/skillmarker">Skillmarker</a><br><span class="tag">German AI job-market analysis</span></td><td>Collects jobs from the Bundesagentur für Arbeit API and 6 recruiting systems; cost-capped LLM extraction to validated JSON, embedding-based CV matching and cited RAG answers. <a href="https://github.com/MinalBorse/skillmarker-mobile">Mobile version</a>.</td><td class="results">900+ postings, 80 tests</td></tr>
+          <tr data-topic="trust"><td><a href="https://github.com/MinalBorse/GDPR-Privacy-Guard">GDPR Privacy Guard</a><br><span class="tag">Multi-agent anonymisation</span></td><td>Agents classify personal data, design a k-anonymity plan and attack it with a simulated linkage attack on 4,000 records; human approval and a tamper-evident audit trail.</td><td class="results">Re-identification 70 % to 0, k of 4 or more</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/DB-Bahn-Delay-Radar">DB Delay Radar</a><br><span class="tag">Deutsche Bahn delay analytics</span></td><td>A DB Timetables API collector and nationwide stop archive on DuckDB; weather-impact statistics, delay propagation and a gradient-boosting delay-risk model.</td><td class="results">AUC 0.74 (simulated), 68 tests</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Excel-to-PowerBI">Excel to Power BI Migration Agent</a></td><td>Migrates Excel reports to Power BI with DAX, with the numbers verified against Excel.</td><td class="results">Live demo</td></tr>
+          <tr data-topic="sap"><td><a href="https://github.com/MinalBorse/SAP-BI-Assistance">SAP BI Assistant</a></td><td>A RAG chatbot on SAP ERP data. <a href="https://github.com/MinalBorse/SAP-BI-Assistance-Basic">Basic version</a>.</td><td class="results"></td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Portfolio-Pilot">Portfolio Pilot</a></td><td>Investment analytics.</td><td class="results"></td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Sprint-2home-barista-assistant">Home Barista Assistant</a></td><td>A RAG chatbot with tool calling for home coffee brewing (LangChain and Streamlit).</td><td class="results"></td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Sprint-1ProjectInterview-App">Interview Practice App</a></td><td>Practice job interviews with an AI interviewer (Streamlit and OpenRouter). <a href="https://github.com/MinalBorse/interview-app-v2">Version 2</a>.</td><td class="results"></td></tr>
         </tbody>
       </table>
     </div>
@@ -334,21 +406,36 @@ footer { padding: 28px 0 48px; color: var(--ink-soft); font-size: 0.9rem; }
   <section id="skills">
     <h2 class="section-title">Skills</h2>
     <div class="skills">
-      <div><h3>AI engineering</h3><p>LangChain, LangGraph (graphs, parallel agents, hierarchies, handoffs, human approval, memory), RAG, MCP, prompt design, structured output, evaluation.</p></div>
-      <div><h3>Data and analytics</h3><p>Python, pandas, NumPy, scikit-learn, SciPy optimisation, Monte Carlo, statistics, Plotly, Power BI, Tableau, SAP.</p></div>
-      <div><h3>Engineering practice</h3><p>Streamlit apps, pytest, Docker, GitHub Actions, uv, SQLite, security guards against prompt injection and personal-data leaks.</p></div>
+      <div><h3>Generative AI and agents</h3><p>LangGraph, LangChain, multi-agent systems, ReAct agents, tool calling, hybrid RAG (ChromaDB, BM25), MCP, prompt engineering, human-in-the-loop, OpenRouter, Claude Code.</p></div>
+      <div><h3>LLM evaluation and AI safety</h3><p>LLM evaluation, LLM-as-judge, RAG faithfulness, red-teaming, prompt-injection defence, PII masking, guarded text-to-SQL, EU AI Act, AI fairness auditing, GDPR.</p></div>
+      <div><h3>SAP and BI</h3><p>SAP Analytics Cloud (Analytics Designer), SAP Datasphere, S/4HANA, BW/4HANA, ABAP CDS views (VDM), Power BI, DAX, Power Query, Tableau.</p></div>
+      <div><h3>ML and data</h3><p>pandas, NumPy, scikit-learn, gradient boosting, NLP, A/B testing, causal inference, DuckDB, PySpark, ETL and ELT, Azure Synapse, AWS Athena and Redshift.</p></div>
+      <div><h3>Programming and DevOps</h3><p>Python, SQL, TypeScript, Next.js, JavaScript, HTML and CSS, Streamlit, pytest, Git, GitHub Actions, Docker.</p></div>
+      <div><h3>Languages</h3><p>English (C2), Hindi and Marathi (native), German (basic).</p></div>
     </div>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <ol class="timeline">
+      <li><h3>MSc Business Management and Engineering</h3><p class="when">RWTH Aachen University and Maastricht School of Management · 10/2017 to 04/2021</p>
+        <ul><li>Thesis on digital resources and innovation (SPSS, SmartPLS).</li></ul></li>
+      <li><h3>Data Analytics Bootcamp (full-time)</h3><p class="when">Ironhack, Berlin · 10/2021 to 12/2021</p></li>
+      <li><h3>Bachelor of Engineering, Mechanical Engineering</h3><p class="when">Dr. D. Y. Patil Institute of Engineering and Technology, Pune, India · 2012 to 2016</p></li>
+    </ol>
+    <p class="measure"><strong>Certifications:</strong> Google Data Analytics Specialization (2021), Data Visualization with Tableau, Coursera (2021).<br>
+       <strong>Volunteering:</strong> UN Online Volunteer (2020); NSS coordinator, led 50 volunteers (2013 to 2016).</p>
   </section>
 
   <!-- ================= CONTACT ================= -->
   <section id="contact">
     <div class="contact">
       <h2 class="section-title">Let's talk</h2>
-      <!-- Replace the placeholders in square brackets with your details. -->
-      <p class="measure">I am looking for a role where AI meets real business processes: manufacturing, supply chain, finance or enterprise analytics.</p>
+      <p class="measure">I am looking for a role where AI meets real business processes: AI engineering, LLM agents, or business intelligence in manufacturing, supply chain, finance or enterprise analytics.</p>
       <p>Email: <a href="mailto:minalborse10@gmail.com">minalborse10@gmail.com</a><br>
          GitHub: <a href="https://github.com/MinalBorse">github.com/MinalBorse</a><br>
-         Location: Nordenham, Germany</p>
+         Location: Nordenham, Germany · eligible to work in the EU</p>
     </div>
   </section>
   </main>
