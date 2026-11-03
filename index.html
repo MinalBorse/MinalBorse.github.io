@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Minal Sunil Borse · AI engineer for manufacturing and enterprise systems</title>
+<meta name="description" content="Portfolio of Minal Sunil Borse: the Werk Nord Control Tower, 19 AI copilots that trace problems across a company and price them in euros, plus AI, BI and SAP projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   Design: a technical drawing of a factory.
+   Drafting paper, graphite ink, one steel-blue accent. The andon colours
+   (green, amber, red) appear ONLY where they mean status.
+   To edit: change the texts below; colours live in :root.
+   ------------------------------------------------------------------ */
+:root {
+  --paper: #EEF1F3;
+  --sheet: #FFFFFF;
+  --ink: #1D2731;
+  --ink-soft: #4E5B66;
+  --rule: #C9D1D8;
+  --steel: #2F5D8A;
+  --ok: #2E8B57;
+  --watch: #C98A00;
+  --stop: #C8372D;
+  --grid: rgba(47, 93, 138, 0.07);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #151B21; --sheet: #1D252D; --ink: #E6EBEF; --ink-soft: #A3B0BB; --rule: #33404B;
+    --steel: #7FA9D3; --ok: #5DBB86; --watch: #E2B33C; --stop: #E36A5F; --grid: rgba(127, 169, 211, 0.06);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #151B21; --sheet: #1D252D; --ink: #E6EBEF; --ink-soft: #A3B0BB; --rule: #33404B;
+  --steel: #7FA9D3; --ok: #5DBB86; --watch: #E2B33C; --stop: #E36A5F; --grid: rgba(127, 169, 211, 0.06);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: "Archivo", "Segoe UI", Arial, sans-serif; font-size: 1.0625rem; line-height: 1.6;
+  /* drafting-paper grid */
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+a { color: var(--steel); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--steel); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.measure { max-width: 68ch; }
+
+/* ---- header ---- */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; flex-wrap: wrap; }
+.mark { font-weight: 700; font-stretch: 112%; text-decoration: none; color: var(--ink); letter-spacing: 0.01em; }
+.nav { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.95rem; }
+.nav a { color: var(--ink-soft); text-decoration: none; }
+.nav a:hover { color: var(--ink); }
+.theme { background: none; border: 1px solid var(--rule); color: var(--ink-soft); border-radius: 6px; padding: 4px 10px; font: inherit; font-size: 0.85rem; cursor: pointer; }
+
+/* ---- hero ---- */
+.hero { padding: 48px 0 32px; }
+.hero h1 {
+  font-size: clamp(2.3rem, 5.6vw, 4.4rem); line-height: 1.02; margin: 0 0 18px; font-weight: 800;
+  font-stretch: 125%; letter-spacing: -0.01em; max-width: 16ch;
+}
+.hero .lede { font-size: 1.2rem; color: var(--ink-soft); max-width: 60ch; margin: 0 0 28px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 11px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; border: 1.5px solid var(--ink); color: var(--ink); }
+.btn.primary { background: var(--ink); color: var(--paper); }
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+
+/* ---- the cause chain (the one memorable element) ---- */
+.chain-sheet { margin: 40px 0 8px; background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 22px 22px 18px; }
+.chain-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.chain-head h2 { margin: 0; font-size: 1.1rem; font-stretch: 112%; }
+.chain-head p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+.chain { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; list-style: none; padding: 0; margin: 0; overflow-x: auto; }
+.step { position: relative; padding: 14px 18px 14px 14px; min-width: 150px; display: flex; }   /* flex: equal box heights */
+.step button {
+  all: unset; box-sizing: border-box; /* all: unset also resets box-sizing; without this the padding spilled over the edge */
+  display: block; cursor: pointer; width: 100%; height: 100%; border-radius: 6px; padding: 10px; border: 1.5px solid var(--rule);
+  background: var(--paper); transition: border-color .2s, background .2s;
+}
+.step button:focus-visible { outline: 3px solid var(--steel); outline-offset: 2px; }
+.step button[aria-pressed="true"] { border-color: var(--steel); background: var(--sheet); }
+.step .who { font-size: 0.78rem; color: var(--ink-soft); display: block; }
+.step .what { font-weight: 600; line-height: 1.3; display: block; margin-top: 2px; font-size: 0.95rem; }
+.step .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--rule); margin-right: 6px; vertical-align: 1px; transition: background .35s; }
+.step.lit .dot { background: var(--stop); }
+.step.lit.last .dot { background: var(--watch); }
+.step:not(:last-child)::after {
+  content: ""; position: absolute; right: 2px; top: 50%; width: 14px; height: 2px; background: var(--rule);
+}
+.detail { margin-top: 12px; padding: 12px 14px; border-left: 3px solid var(--steel); background: var(--paper); border-radius: 0 6px 6px 0; min-height: 3.2em; }
+.detail strong { font-stretch: 105%; }
+.saved { margin-top: 14px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.saved .eur { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 800; font-stretch: 118%; color: var(--ok); }
+@media (max-width: 860px) { .chain { grid-template-columns: repeat(3, minmax(150px, 1fr)); } .step:nth-child(3)::after { display: none; } }
+@media (max-width: 520px) { .chain { grid-template-columns: 1fr; } .step::after { display: none; } }
+
+/* ---- sections ---- */
+section { padding: 56px 0; }
+section > .wrap > h2, .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); font-stretch: 118%; font-weight: 750; margin: 0 0 10px; line-height: 1.1; }
+.intro { color: var(--ink-soft); max-width: 64ch; margin: 0 0 28px; }
+
+/* featured project */
+.feature { display: grid; grid-template-columns: 1.15fr 1fr; gap: 36px; align-items: start; }
+.facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+.fact { background: var(--sheet); padding: 16px; }
+.fact b { display: block; font-size: 1.7rem; font-stretch: 118%; line-height: 1.1; }
+.fact span { color: var(--ink-soft); font-size: 0.92rem; }
+.feature ul { padding-left: 1.1em; margin: 14px 0 20px; }
+.feature li { margin: 4px 0; }
+@media (max-width: 860px) { .feature { grid-template-columns: 1fr; } }
+
+/* the plant map: copilots by division */
+.plant { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.division { background: var(--sheet); border: 1px solid var(--rule); border-top: 4px solid var(--steel); border-radius: 8px; padding: 16px 16px 6px; }
+.division h3 { margin: 0 0 10px; font-size: 1.02rem; font-stretch: 112%; }
+.copilot { padding: 10px 0; border-top: 1px solid var(--rule); }
+.copilot:first-of-type { border-top: 0; }
+.copilot a { font-weight: 650; text-decoration: none; color: var(--ink); }
+.copilot a:hover { color: var(--steel); text-decoration: underline; }
+.copilot p { margin: 3px 0 0; font-size: 0.9rem; color: var(--ink-soft); line-height: 1.45; }
+@media (max-width: 960px) { .plant { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .plant { grid-template-columns: 1fr; } }
+
+/* other projects: a filterable register */
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.filters button { font: inherit; font-size: 0.92rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.register { width: 100%; border-collapse: collapse; background: var(--sheet); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.register-wrap { overflow-x: auto; }
+.register th, .register td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.register th { font-size: 0.9rem; color: var(--ink-soft); font-weight: 600; }
+.register tr:last-child td { border-bottom: 0; }
+.register td a { font-weight: 650; }
+.tag { font-size: 0.82rem; color: var(--ink-soft); white-space: nowrap; }
+
+/* how I work */
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.principle h3 { margin: 0 0 6px; font-size: 1.15rem; font-stretch: 112%; }
+.principle p { margin: 0; color: var(--ink-soft); }
+@media (max-width: 760px) { .principles { grid-template-columns: 1fr; } }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.skills h3 { margin: 0 0 6px; font-size: 1rem; font-stretch: 112%; }
+.skills p { margin: 0; color: var(--ink-soft); }
+@media (max-width: 760px) { .skills { grid-template-columns: 1fr; } }
+
+/* contact */
+.contact { background: var(--ink); color: var(--paper); border-radius: 12px; padding: 36px; }
+.contact h2 { color: var(--paper); margin-top: 0; }
+.contact a { color: var(--paper); }
+.contact p { color: var(--paper); opacity: 0.85; }
+footer { padding: 28px 0 48px; color: var(--ink-soft); font-size: 0.9rem; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#">Minal Sunil Borse</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#control-tower">Control Tower</a>
+      <a href="#copilots">Copilots</a>
+      <a href="#projects">More projects</a>
+      <a href="#approach">How I work</a>
+      <a href="#contact">Contact</a>
+      <button class="theme" id="theme" type="button">Dark mode</button>
+    </nav>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <main>
+  <div class="hero">
+    <h1>I build AI systems that find out why a company loses money.</h1>
+    <p class="lede">AI engineer (Turing College) focused on manufacturing and enterprise processes. My main project connects 19 AI copilots that trace a problem across departments, price it in euros, and let the right person decide what to do.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://github.com/MinalBorse/control-tower">See the Control Tower on GitHub</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+
+    <!-- The signature element: one real cause chain from the project. Click a step to read it. -->
+    <div class="chain-sheet" aria-labelledby="chain-title">
+      <div class="chain-head">
+        <h2 id="chain-title">One problem, six departments</h2>
+        <p>A real chain the Control Tower found. Select a step.</p>
+      </div>
+      <ol class="chain" id="chain">
+        <li class="step"><button type="button" data-i="0"><span class="who"><span class="dot"></span>Purchasing</span><span class="what">Spare bearing on backorder</span></button></li>
+        <li class="step"><button type="button" data-i="1"><span class="who"><span class="dot"></span>Maintenance</span><span class="what">Machine M-05 stops 12 hours</span></button></li>
+        <li class="step"><button type="button" data-i="2"><span class="who"><span class="dot"></span>Production</span><span class="what">Line 2 misses its plan</span></button></li>
+        <li class="step"><button type="button" data-i="3"><span class="who"><span class="dot"></span>Logistics</span><span class="what">Key customer gets half its order</span></button></li>
+        <li class="step"><button type="button" data-i="4"><span class="who"><span class="dot"></span>Sales and finance</span><span class="what">12 % discount, 146k EUR blocked</span></button></li>
+        <li class="step last"><button type="button" data-i="5"><span class="who"><span class="dot"></span>Treasury</span><span class="what">Cash below the buffer in week 8</span></button></li>
+      </ol>
+      <div class="detail" id="detail" aria-live="polite">Each step is verified by the copilot that owns it, using its own data.</div>
+      <div class="saved"><span class="eur">185,242 EUR</span><span>would not have been lost with one spare bearing set in stock (the tower's what-if analysis).</span></div>
+    </div>
+  </div>
+
+  <!-- ================= FEATURED: CONTROL TOWER ================= -->
+  <section id="control-tower">
+    <div class="feature">
+      <div>
+        <h2 class="section-title">Werk Nord Control Tower</h2>
+        <p class="measure">A control tower for a whole (fictional) German manufacturer. Nineteen specialist copilots report into one system that links their findings into cause chains, scores the health of every department, raises early warnings and runs a governance layer. Code computes every number, AI agents read, route and explain, and a person with the right role approves every decision.</p>
+        <ul>
+          <li>Questions are answered by the right specialists in parallel, linked to verified cause chains, and checked so that no invented number survives.</li>
+          <li>A CEO review asks four division leads, who ask 27 departments, and ranks the priorities with safety first.</li>
+          <li>The risk register and control tests fill themselves from the copilots' evidence.</li>
+          <li>What-if analysis shows which fix would have mattered most, with causes that need one, all, or part of their inputs.</li>
+          <li>It proposes new cause links for a person to confirm, ranks root causes by money, forecasts each department's health and simulates scenarios.</li>
+          <li>Meeting slides in one click, a briefing by Teams or email, voice questions, and an English or German interface.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="https://github.com/MinalBorse/control-tower">Code and README</a>
+          <!-- Add these when you have them: -->
+          <!-- <a class="btn" href="YOUR-VIDEO-LINK">Watch the 3-minute demo</a> -->
+          <!-- <a class="btn" href="YOUR-LIVE-DEMO-LINK">Try the live demo</a> -->
+        </div>
+      </div>
+      <div class="facts" role="list">
+        <div class="fact" role="listitem"><b>19</b><span>AI copilots, each a complete project</span></div>
+        <div class="fact" role="listitem"><b>32</b><span>departments scored every week</span></div>
+        <div class="fact" role="listitem"><b>54 / 54</b><span>events verified by their owner's code</span></div>
+        <div class="fact" role="listitem"><b>51 / 0</b><span>early warnings found / false alarms</span></div>
+        <div class="fact" role="listitem"><b>8</b><span>cause chains across departments</span></div>
+        <div class="fact" role="listitem"><b>80</b><span>automated tests in the tower alone</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COPILOTS BY DIVISION ================= -->
+  <section id="copilots">
+    <h2 class="section-title">The nineteen copilots</h2>
+    <p class="intro">Grouped the way the company is organised. Each one has its own data, tests and README, and most run as their own app.</p>
+    <div class="plant">
+      <div class="division">
+        <h3>Operations</h3>
+        <div class="copilot"><a href="https://github.com/MinalBorse/Maintenance-Copilot">Maintenance Copilot</a><p>Predicts machine failures from sensors, diagnoses with the manuals, drafts work orders for approval.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/Plan-Adherence-Copilot">Plan Adherence Copilot</a><p>Volume and schedule compliance per line, and the root cause of every miss.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/Quality-Service-Center">Quality and Service Center</a><p>SPC run rules, gauge checks, Weibull warranty forecast, an exact recall list, an 8D agent team.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/plm-copilot">Engineering and PLM</a><p>Design changes, product revisions and the bill of materials; finds a fix stuck for 21 days.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/energy-copilot">Energy Optimisation</a><p>Moves flexible loads to cheaper hours: 17,752 EUR a month, without touching production.</p></div>
+      </div>
+      <div class="division">
+        <h3>Supply chain</h3>
+        <div class="copilot"><a href="https://github.com/MinalBorse/OTIF-Copilot">OTIF Copilot</a><p>On-time-in-full for customers and suppliers, with contract penalties.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/Supply-Chain-Tower">Supply Chain Tower</a><p>30 suppliers in 3 tiers, news checked by two sources, resilience gaps, LkSG and Scope 3.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/process-suite">Process Suite</a><p>Three-way invoice match, S&amp;OP capacity, job scheduling, service desk and team attrition risk.</p></div>
+      </div>
+      <div class="division">
+        <h3>Commercial</h3>
+        <div class="copilot"><a href="https://github.com/MinalBorse/Sales-Performance-Copilot">Sales Performance Copilot</a><p>Price, volume and mix behind every revenue change, plus forecast accuracy per rep.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/order-to-cash">Order-to-Cash Command Center</a><p>The true margin of every order, with picking and truck-loading optimisation, customs and currency.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/customer-service-agent">Customer Service Agent</a><p>Resolves 86 % of tickets end to end; credits above its limit wait for a person.</p></div>
+      </div>
+      <div class="division">
+        <h3>Corporate</h3>
+        <div class="copilot"><a href="https://github.com/MinalBorse/Cyber-Defense-Center">Cyber Defense Center</a><p>An AI security operations center: attack paths, analyst agents, risk in euros, tabletop drills.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/finance-logistics-copilot">Finance and Logistics</a><p>EBIT, cost centres, payment behaviour, stock and pallet accounts.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/treasury-copilot">Treasury Copilot</a><p>A 13-week cash forecast that spots the week-8 gap and who can close it.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/esg-copilot">ESG and CSRD Copilot</a><p>Emissions, data-quality checks and a report whose auditor rejects a false green claim.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/business-functions-copilot">Business Functions</a><p>Marketing, R&amp;D, quality, HR, safety, energy, procurement, service and IT in one framework.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/legal-copilot">Legal and Contracts</a><p>Notice deadlines and risky clauses: a contract that renews for two years unless cancelled in 12 days.</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/tax-copilot">Tax</a><p>VAT treatment of every invoice and the filing deadlines (simplified rules).</p></div>
+        <div class="copilot"><a href="https://github.com/MinalBorse/control-tower/tree/main/specialists/strategy-copilot">Strategy and Targets</a><p>The year's key results linked to the KPIs: which targets are off track.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OTHER PROJECTS ================= -->
+  <section id="projects">
+    <h2 class="section-title">More projects</h2>
+    <p class="intro">AI assistants, BI and SAP tools I built before and during the course. Filter by topic.</p>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="ai">AI assistants</button>
+      <button type="button" data-filter="bi">BI and data</button>
+      <button type="button" data-filter="sap">SAP</button>
+      <button type="button" data-filter="trust">Privacy and fairness</button>
+      <button type="button" data-filter="apps">Apps</button>
+    </div>
+    <div class="register-wrap">
+      <!-- Check each one-line description and adjust it to what the project really does. -->
+      <table class="register" id="register">
+        <thead><tr><th scope="col">Project</th><th scope="col">What it does</th><th scope="col">Topic</th></tr></thead>
+        <tbody>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Sprint-3-AIDataAnalyst">AI Data Analyst</a></td><td>An agent that analyses data sets and explains the results (Turing College, sprint 3).</td><td class="tag">AI assistants</td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Sprint-2home-barista-assistant">Home Barista Assistant</a></td><td>A RAG chatbot with tool calling for home coffee brewing (LangChain and Streamlit, sprint 2).</td><td class="tag">AI assistants</td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Sprint-1ProjectInterview-App">Interview Practice App</a></td><td>Practice job interviews with an AI interviewer (Streamlit and OpenRouter, sprint 1). <a href="https://github.com/MinalBorse/interview-app-v2">Version 2</a>.</td><td class="tag">AI assistants</td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Report-Insignt-Crew">Report Insight Crew</a></td><td>A team of agents that reads reports and writes the key insights.</td><td class="tag">AI assistants</td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Customer-Intelligence-Feedback-lens">Customer Feedback Lens</a></td><td>Turns customer feedback into themes, sentiment and actions.</td><td class="tag">AI assistants</td></tr>
+          <tr data-topic="ai"><td><a href="https://github.com/MinalBorse/Portfolio-Pilot">Portfolio Pilot</a></td><td>An assistant for analysing an investment portfolio.</td><td class="tag">AI assistants</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Ask-Your-Data">Ask Your Data</a></td><td>Ask questions about your data in plain language and get answers and charts.</td><td class="tag">BI and data</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Self-Healing-BI">Self-Healing BI</a></td><td>Finds broken reports and data problems and proposes fixes.</td><td class="tag">BI and data</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Excel-to-PowerBI">Excel to Power BI</a></td><td>Helps move Excel reports into Power BI.</td><td class="tag">BI and data</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/Migration-Assistant-Tableau-to-PowerBI-">Tableau to Power BI Migration Assistant</a></td><td>Helps migrate Tableau dashboards to Power BI.</td><td class="tag">BI and data</td></tr>
+          <tr data-topic="bi"><td><a href="https://github.com/MinalBorse/DB-Bahn-Delay-Radar">DB Bahn Delay Radar</a></td><td>Analyses Deutsche Bahn train delays.</td><td class="tag">BI and data</td></tr>
+          <tr data-topic="sap"><td><a href="https://github.com/MinalBorse/SAP-Process-Mining-Assistant">SAP Process Mining Assistant</a></td><td>Finds bottlenecks and deviations in SAP processes.</td><td class="tag">SAP</td></tr>
+          <tr data-topic="sap"><td><a href="https://github.com/MinalBorse/SAP-BI-Assistance">SAP BI Assistant</a></td><td>An assistant for SAP reporting and analytics. <a href="https://github.com/MinalBorse/SAP-BI-Assistance-Basic">Basic version</a>.</td><td class="tag">SAP</td></tr>
+          <tr data-topic="trust"><td><a href="https://github.com/MinalBorse/GDPR-Privacy-Guard">GDPR Privacy Guard</a></td><td>Detects and protects personal data.</td><td class="tag">Privacy and fairness</td></tr>
+          <tr data-topic="trust"><td><a href="https://github.com/MinalBorse/AI-Fairness-Auditor">AI Fairness Auditor</a></td><td>Checks AI models and data for unfair bias.</td><td class="tag">Privacy and fairness</td></tr>
+          <tr data-topic="apps"><td><a href="https://github.com/MinalBorse/skillmarker-mobile">Skillmarker</a></td><td>A skills app, with a <a href="https://github.com/MinalBorse/skillmarker">web version</a> and a mobile version.</td><td class="tag">Apps</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= HOW I WORK ================= -->
+  <section id="approach">
+    <h2 class="section-title">How I work</h2>
+    <p class="intro">Three rules run through every project.</p>
+    <div class="principles">
+      <div class="principle"><h3>Code computes, AI explains</h3><p>Every number comes from code, so it is exact and testable. Agents read, route and write, and a check removes any number that is not in the evidence.</p></div>
+      <div class="principle"><h3>A person decides</h3><p>Actions wait for approval by the right role. A too-junior approval is refused by the system, and every decision is logged.</p></div>
+      <div class="principle"><h3>Measure, don't guess</h3><p>Synthetic data with planted problems and traps shows whether the system finds the real issues and ignores the false ones.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills">
+      <div><h3>AI engineering</h3><p>LangChain, LangGraph (graphs, parallel agents, hierarchies, handoffs, human approval, memory), RAG, MCP, prompt design, structured output, evaluation.</p></div>
+      <div><h3>Data and analytics</h3><p>Python, pandas, NumPy, scikit-learn, SciPy optimisation, Monte Carlo, statistics, Plotly, Power BI, Tableau, SAP.</p></div>
+      <div><h3>Engineering practice</h3><p>Streamlit apps, pytest, Docker, GitHub Actions, uv, SQLite, security guards against prompt injection and personal-data leaks.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact">
+    <div class="contact">
+      <h2 class="section-title">Let's talk</h2>
+      <!-- Replace the placeholders in square brackets with your details. -->
+      <p class="measure">I am looking for a role where AI meets real business processes: manufacturing, supply chain, finance or enterprise analytics.</p>
+      <p>Email: <a href="mailto:[your email]">[your email]</a><br>
+         LinkedIn: <a href="[your LinkedIn URL]">[your LinkedIn]</a><br>
+         GitHub: <a href="https://github.com/MinalBorse">github.com/MinalBorse</a><br>
+         Location: [your city], Germany</p>
+    </div>
+  </section>
+  </main>
+
+  <footer>All Werk Nord data is synthetic, generated with planted stories so the systems can be measured.</footer>
+</div>
+
+<script>
+// ---- the cause chain: light up the steps once on load, then explain the selected step ----
+const details = [
+  "<strong>Purchasing (OTIF copilot).</strong> The spare bearing set for machine M-05 is on backorder at the supplier Lager AG.",
+  "<strong>Maintenance copilot.</strong> The bearing fails; with no spare available, M-05 stops for 12 hours. The failure was visible in the sensor data days earlier.",
+  "<strong>Plan adherence copilot.</strong> Line 2 misses its production plan in week 2.",
+  "<strong>OTIF copilot.</strong> The customer Becker receives only half of its P-E order.",
+  "<strong>Sales and finance copilots.</strong> Becker gets a 12 % discount as compensation, and then blocks 146,000 EUR of invoice payments.",
+  "<strong>Treasury copilot.</strong> With the blocked payments, the 13-week cash forecast falls below the 300,000 EUR buffer in week 8."
+];
+const steps = [...document.querySelectorAll("#chain .step")];
+const detail = document.getElementById("detail");
+steps.forEach((li, i) => {
+  li.querySelector("button").addEventListener("click", () => {
+    steps.forEach(s => s.querySelector("button").setAttribute("aria-pressed", "false"));
+    li.querySelector("button").setAttribute("aria-pressed", "true");
+    detail.innerHTML = details[i];
+  });
+});
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+steps.forEach((li, i) => reduce ? li.classList.add("lit") : setTimeout(() => li.classList.add("lit"), 400 + i * 380));
+
+// ---- project filter ----
+const rows = [...document.querySelectorAll("#register tbody tr")];
+document.querySelectorAll(".filters button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filters button").forEach(b => b.setAttribute("aria-pressed", "false"));
+    btn.setAttribute("aria-pressed", "true");
+    const f = btn.dataset.filter;
+    rows.forEach(r => { r.hidden = !(f === "all" || r.dataset.topic === f); });
+  });
+});
+
+// ---- light / dark switch (remembered in this browser) ----
+const root = document.documentElement, themeBtn = document.getElementById("theme");
+function setTheme(t) {
+  root.setAttribute("data-theme", t);
+  themeBtn.textContent = t === "dark" ? "Light mode" : "Dark mode";
+  try { localStorage.setItem("theme", t); } catch (e) {}
+}
+let saved = null;
+try { saved = localStorage.getItem("theme"); } catch (e) {}
+setTheme(saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+themeBtn.addEventListener("click", () => setTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark"));
+</script>
+</body>
+</html>
