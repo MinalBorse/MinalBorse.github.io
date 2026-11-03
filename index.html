@@ -94,7 +94,10 @@ h2.title { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.1; margin: 0 
 @media (max-width: 860px) { .impact { grid-template-columns: 1fr; } }
 
 /* career: gantt */
-.gantt-detail { margin-top: 14px; }
+.gantt-detail { margin-top: 18px; display: grid; gap: 4px; }
+.role { padding: 14px 12px; border-top: 1px solid var(--grid); border-radius: 8px; transition: background .4s; }
+.role h3 i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 8px; vertical-align: 1px; }
+.role.flash { background: var(--bg); }
 .gantt-detail h3 { margin: 0 0 2px; font-size: 1.15rem; }
 .gantt-detail .when { color: var(--muted); margin: 0 0 8px; font-size: 0.95rem; }
 .gantt-detail ul { margin: 0; padding-left: 1.1em; }
@@ -225,9 +228,9 @@ footer { padding: 28px 0 48px; color: var(--muted); font-size: 0.9rem; }
   <section id="career">
     <p class="kicker">2012 to today</p>
     <h2 class="title">Career, as a timeline</h2>
-    <p class="intro">Each bar is a role or a degree. Select one to read what I did there.</p>
+    <p class="intro">Each bar is a role or a degree; select one to jump to it. All details are listed below the chart.</p>
     <div class="panel">
-      <svg id="gantt" class="gantt-svg" viewBox="0 0 1040 300" role="img" aria-label="Career timeline from 2016 to 2026"></svg>
+      <svg id="gantt" class="gantt-svg" viewBox="0 0 1040 330" role="img" aria-label="Career timeline from 2016 to 2026"></svg>
       <div class="legend"><span><i style="background:var(--c2)"></i>Work</span><span><i style="background:var(--c1)"></i>AI engineering</span><span><i style="background:var(--c3)"></i>Education</span></div>
       <div class="gantt-detail" id="ganttDetail" aria-live="polite"></div>
     </div>
@@ -286,7 +289,7 @@ footer { padding: 28px 0 48px; color: var(--muted); font-size: 0.9rem; }
       <div><h3><i style="background:var(--c2)"></i>SAP and BI</h3><p>SAP Analytics Cloud (Analytics Designer), SAP Datasphere, S/4HANA, BW/4HANA, ABAP CDS views (VDM), Power BI, DAX, Power Query, Tableau.</p></div>
       <div><h3><i style="background:var(--c3)"></i>ML and data</h3><p>pandas, NumPy, scikit-learn, gradient boosting, NLP, A/B testing, causal inference, DuckDB, PySpark, ETL and ELT, Azure Synapse, AWS Athena and Redshift.</p></div>
       <div><h3><i style="background:var(--c5)"></i>Programming and DevOps</h3><p>Python, SQL, TypeScript, Next.js, JavaScript, HTML and CSS, Streamlit, pytest, Git, GitHub Actions, Docker.</p></div>
-      <div><h3><i style="background:var(--muted)"></i>Languages</h3><p>English (C2), Hindi and Marathi (native), German (basic).</p></div>
+      <div><h3><i style="background:var(--muted)"></i>Languages and ways of working</h3><p>English (C2), Hindi and Marathi (native), German (basic). Clear communication, critical thinking, problem-solving, adaptability.</p></div>
     </div>
   </section>
 
@@ -295,7 +298,7 @@ footer { padding: 28px 0 48px; color: var(--muted); font-size: 0.9rem; }
     <div class="edu">
       <div><h3>MSc Business Management and Engineering</h3><p>RWTH Aachen University and Maastricht School of Management, 2017 to 2021. Thesis on digital resources and innovation (SPSS, SmartPLS).</p></div>
       <div><h3>Data Analytics Bootcamp</h3><p>Ironhack, Berlin, full-time, 2021. Google Data Analytics Specialization and Data Visualization with Tableau (Coursera), 2021.</p></div>
-      <div><h3>Bachelor of Engineering, Mechanical Engineering</h3><p>Dr. D. Y. Patil Institute of Engineering and Technology, Pune, 2012 to 2016. NSS coordinator, led 50 volunteers; UN Online Volunteer (2020).</p></div>
+      <div><h3>Bachelor of Engineering, Mechanical Engineering</h3><p>Dr. D. Y. Patil Institute of Engineering and Technology, Pune, 2012 to 2016. NSS coordinator: led 50 volunteers, ran a 7-day skills camp, +20 % social media followers. UN Online Volunteer (2020): organised symposia supporting communities fighting COVID-19 in Cameroon.</p></div>
     </div>
   </section>
 
@@ -334,12 +337,13 @@ const IMPACT = [                                                  // exactly as 
 const CAREER = [                                                  // start and end as years with decimals (month / 12)
   { row: 0, kind: "edu", short: "B.Eng. Mechanical Engineering, Pune", title: "Bachelor of Engineering, Mechanical Engineering", where: "Dr. D. Y. Patil Institute, Pune", from: 2012.5, to: 2016.5, when: "2012 to 2016", points: ["NSS coordinator: led 50 volunteers."] },
   { row: 1, kind: "edu", short: "MSc, RWTH Aachen and Maastricht", title: "MSc Business Management and Engineering", where: "RWTH Aachen and Maastricht School of Management", from: 2017.75, to: 2021.25, when: "10/2017 to 04/2021", points: ["Thesis on digital resources and innovation (SPSS, SmartPLS)."] },
-  { row: 2, kind: "work", short: "Airbus · working student, AI in aviation", title: "Working Student, Technology Development and Innovation", where: "Airbus Defence and Space, Munich", from: 2019.25, to: 2020.7, when: "04/2019 to 09/2020", points: ["EUROCAE WG-114 and SAE G-34 working groups on certifying AI in aviation: AI techniques, safety and security, a gap analysis of autonomous versus classical systems.", "Analysed web tracking data and built web apps: +20 % web traffic."] },
-  { row: 3, kind: "edu", short: "Ironhack · data analytics bootcamp", title: "Data Analytics Bootcamp", where: "Ironhack, Berlin", from: 2021.75, to: 2022.0, when: "10/2021 to 12/2021", points: ["Full-time; plus the Google Data Analytics Specialization and Data Visualization with Tableau (2021)."] },
-  { row: 4, kind: "work", short: "Cuponation · product data analyst", title: "Product Data Analyst II", where: "Cuponation GmbH, Munich", from: 2022.08, to: 2023.5, when: "02/2022 to 06/2023", points: ["Cleaned and structured event and transaction data with SQL, PySpark and Python from AWS Athena and Redshift Spectrum: data quality +30 %.", "Created 20+ automated Tableau dashboards and A/B testing frameworks; cohort analysis and causal inference to surface churn risk."] },
-  { row: 5, kind: "work", short: "Zeiss Digital Partners · product owner", title: "Product Owner and Data Analyst", where: "Zeiss Digital Partners, Munich", from: 2023.5, to: 2023.83, when: "07/2023 to 10/2023", points: ["Integrated SAP ERP and CRM data in Azure Synapse Analytics; Power BI KPI reports across production, supply chain and customer 360.", "Presented a roadmap and budget that secured project approval."] },
-  { row: 6, kind: "work", short: "Coster · BI specialist", title: "Business Intelligence Specialist", where: "Coster Special Technologies S.p.A., Milan", from: 2024.17, to: 2026.5, when: "03/2024 to 06/2026", points: ["15+ interactive SAP Analytics Cloud dashboards (Analytics Designer, Datasphere) across finance, supply chain, logistics, procurement, HR and manufacturing.", "ETL pipelines and ABAP CDS data models (VDM) on SAP BW and S/4HANA: queries up to 90 % faster.", "Python and scikit-learn workflows for predictive risk assessment of key operational metrics.", "Decisions 70 % faster, data requests 50 % faster, 100 % user adoption across 5+ countries."] },
-  { row: 7, kind: "ai", short: "Turing College · AI engineering", title: "AI Engineering Bootcamp", where: "Turing College, remote", from: 2026.67, to: 2027.0, when: "09/2026 to 12/2026", points: ["Production-style LLM systems, each evaluated against ground truth and secured with guardrails and tests.", "Built the Werk Nord Control Tower: 19 AI copilots, cause chains across 32 departments, governance and human approval."] },
+  { row: 2, kind: "work", short: "Airbus · working student, AI in aviation", title: "Working Student, Technology Development and Innovation", where: "Airbus Defence and Space, Munich", from: 2019.25, to: 2020.7, when: "04/2019 to 09/2020", points: ["EUROCAE WG-114 and SAE G-34 working groups on certifying AI in aviation: AI techniques, safety and security, a gap analysis of autonomous versus classical systems.", "Analysed web tracking reports with Excel and VBA to find trends and develop strategic recommendations.", "Developed interactive web applications (JavaScript, HTML, CSS): +20 % web traffic.", "Coordinated 3 cross-functional teams with JIRA, Confluence and SharePoint."] },
+  { row: 3, kind: "edu", short: "Master thesis · RWTH Business School", title: "Master thesis: influence of digital resources on business innovativeness", where: "RWTH Business School, Aachen", from: 2020.58, to: 2021.25, when: "08/2020 to 04/2021", points: ["Studied how digital business intensity affects innovativeness through cross-functional integration.", "Analysed survey data from 100+ respondents with SPSS and SmartPLS, with statistical analysis and visualisation of the findings.", "Cleaned the data with VBA and Python so that it was accurate and reliable."] },
+  { row: 4, kind: "edu", short: "Ironhack · data analytics bootcamp", title: "Data Analytics Bootcamp", where: "Ironhack, Berlin", from: 2021.75, to: 2022.0, when: "10/2021 to 12/2021", points: ["Full-time; plus the Google Data Analytics Specialization and Data Visualization with Tableau (2021)."] },
+  { row: 5, kind: "work", short: "Cuponation · product data analyst", title: "Product Data Analyst II", where: "Cuponation GmbH, Munich", from: 2022.08, to: 2023.5, when: "02/2022 to 06/2023", points: ["Cleaned and structured raw data with SQL, PySpark and Python (Zeppelin, DataGrip) from AWS Athena and Amazon Redshift Spectrum: data quality +30 %, insights that drove business strategy decisions.", "Created 20+ automated Tableau visualisations and A/B testing frameworks; cohort analysis and causal inference to surface churn risk.", "Worked with 6 stakeholders across product, SEO and marketing to define KPIs and build reports, dashboards and presentations.", "Built hypertables with IntelliJ IDEA for large datasets, and tracked changes with Git on Bitbucket and GitHub together with the data engineers."] },
+  { row: 6, kind: "work", short: "Zeiss Digital Partners · product owner", title: "Product Owner and Data Analyst", where: "Zeiss Digital Partners, Munich", from: 2023.5, to: 2023.83, when: "07/2023 to 10/2023", points: ["In-depth data analysis in production, supply chain management, intralogistics, customer 360 and operations to enable digitalisation.", "Connected SAP ERP and CRM data, defined user-oriented KPIs, and delivered insights through visualisations and exploratory analysis in Azure Synapse Analytics.", "Presented a roadmap, timeline and budget that secured project approval."] },
+  { row: 7, kind: "work", short: "Coster · BI specialist", title: "Business Intelligence Specialist", where: "Coster Special Technologies S.p.A., Milan", from: 2024.17, to: 2026.5, when: "03/2024 to 06/2026", points: ["15+ interactive SAP Analytics Cloud dashboards (Analytics Designer, Datasphere) across finance, supply chain, logistics, procurement, HR and manufacturing.", "ETL pipelines and ABAP CDS data models (VDM) on SAP BW and S/4HANA: queries up to 90 % faster.", "Python and scikit-learn workflows for predictive risk assessment of key operational metrics.", "Partnered with internal and international teams to define KPI logic and standard user-story templates; JIRA data requests resolved 50 % faster.", "Real-time visibility into production volume, stock levels and schedule compliance: decision-making 70 % faster.", "100 % user adoption of self-service analytics through global training sessions in 5+ countries and complete SAC user manuals."] },
+  { row: 8, kind: "ai", short: "Turing College · AI engineering", title: "AI Engineering Bootcamp", where: "Turing College, remote", from: 2026.67, to: 2027.0, when: "09/2026 to 12/2026", points: ["Production-style LLM systems, each evaluated against ground truth and secured with guardrails and tests.", "Built the Werk Nord Control Tower: 19 AI copilots, cause chains across 32 departments, governance and human approval."] },
 ];
 const T = "https://github.com/MinalBorse/control-tower/tree/main/specialists/";
 const DIVISIONS = [
@@ -440,8 +444,11 @@ function drawGantt() {
     if (yr % 2 === 0 || yr === end) { const t = el("text", { x: x(yr), y: H - 6, "text-anchor": "middle", "font-size": 13, fill: css("--muted") }, svg); t.textContent = yr; }
   }
   const colour = { work: css("--c2"), edu: css("--c3"), ai: css("--c1") };
+  // ALL roles are listed below the chart (newest first), so nobody has to click to find them.
   const detail = document.getElementById("ganttDetail");
-  const show = c => { detail.innerHTML = `<h3>${c.title}</h3><p class="when">${c.where} · ${c.when}</p><ul>${c.points.map(p => `<li>${p}</li>`).join("")}</ul>`; };
+  const ordered = [...CAREER].sort((a, b) => b.from - a.from);
+  detail.innerHTML = ordered.map((c, i) => `<article class="role" id="role-${CAREER.indexOf(c)}"><h3><i style="background:${colour[c.kind]}"></i>${c.title}</h3><p class="when">${c.where} · ${c.when}</p><ul>${c.points.map(p => `<li>${p}</li>`).join("")}</ul></article>`).join("");
+  const show = c => { const a = document.getElementById("role-" + CAREER.indexOf(c)); a.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" }); a.classList.add("flash"); setTimeout(() => a.classList.remove("flash"), 1400); };
   CAREER.forEach(c => {
     const y = Tp + c.row * rowH + 4, w = Math.max(10, x(c.to) - x(c.from));
     const r = el("rect", { class: "bar", x: x(c.from), y, width: w, height: rowH - 12, rx: 5, fill: colour[c.kind], tabindex: 0, role: "button", "aria-label": c.title + ", " + c.when }, svg);
@@ -453,7 +460,6 @@ function drawGantt() {
     [r, label].forEach(n => { n.style.cursor = "pointer"; n.addEventListener("click", () => show(c)); });
     r.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(c); } });
   });
-  show(CAREER.find(c => c.title.startsWith("Business Intelligence")));
 }
 
 // ---- copilots: small multiples ----
