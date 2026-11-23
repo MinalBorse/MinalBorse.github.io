@@ -136,7 +136,7 @@ h2.title { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.1; margin: 0 
 .register th { font-size: 0.88rem; color: var(--muted); font-weight: 600; }
 .register th:nth-child(1) { width: 24%; } .register th:nth-child(2) { width: 46%; } .register th:nth-child(3) { width: 30%; }
 .register tr:last-child td { border-bottom: 0; }
-.register td a { font-weight: 650; }
+.register td a, .register td .name { font-weight: 650; }
 .register .type { display: block; font-size: 0.84rem; color: var(--muted); }
 .register .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
 .metric { font-size: 0.86rem; color: var(--muted); }
@@ -284,11 +284,11 @@ footer { padding: 28px 0 48px; color: var(--muted); font-size: 0.9rem; }
   <section id="skills">
     <h2 class="title">Skills</h2>
     <div class="skills">
-      <div><h3><i style="background:var(--c1)"></i>Generative AI and agents</h3><p>LangGraph, LangChain, multi-agent systems, ReAct agents, tool calling, hybrid RAG (ChromaDB, BM25), MCP, prompt engineering, human-in-the-loop, OpenRouter, Claude Code.</p></div>
-      <div><h3><i style="background:var(--c4)"></i>LLM evaluation and AI safety</h3><p>LLM evaluation, LLM-as-judge, RAG faithfulness, red-teaming, prompt-injection defence, PII masking, guarded text-to-SQL, EU AI Act, AI fairness auditing, GDPR.</p></div>
+      <div><h3><i style="background:var(--c1)"></i>Generative AI and agents</h3><p>LangGraph, LangChain, multi-agent systems, ReAct agents, tool calling, custom middleware, hybrid RAG (ChromaDB, BM25), MCP, prompt engineering, human-in-the-loop, short- and long-term memory, model fallback, streaming, OpenRouter, Claude Code.</p></div>
+      <div><h3><i style="background:var(--c4)"></i>LLM evaluation and AI safety</h3><p>LLM evaluation, LLM-as-judge, RAG faithfulness, tool-selection evaluation, planted-error testing, red-teaming, prompt-injection defence, PII masking, guarded text-to-SQL, dependency audits (pip-audit, Bandit), EU AI Act, AI fairness auditing, GDPR.</p></div>
       <div><h3><i style="background:var(--c2)"></i>SAP and BI</h3><p>SAP Analytics Cloud (Analytics Designer), SAP Datasphere, S/4HANA, BW/4HANA, ABAP CDS views (VDM), Power BI, DAX, Power Query, Tableau.</p></div>
-      <div><h3><i style="background:var(--c3)"></i>ML and data</h3><p>pandas, NumPy, scikit-learn, gradient boosting, NLP, A/B testing, causal inference, DuckDB, PySpark, ETL and ELT, Azure Synapse, AWS Athena and Redshift.</p></div>
-      <div><h3><i style="background:var(--c5)"></i>Programming and DevOps</h3><p>Python, SQL, TypeScript, Next.js, JavaScript, HTML and CSS, Streamlit, pytest, Git, GitHub Actions, Docker.</p></div>
+      <div><h3><i style="background:var(--c3)"></i>ML and data</h3><p>pandas, NumPy, SciPy, scikit-learn, gradient boosting, NLP, A/B testing, causal inference, Monte Carlo simulation, backtesting without look-ahead bias, DuckDB, PySpark, ETL and ELT, Azure Synapse, AWS Athena and Redshift.</p></div>
+      <div><h3><i style="background:var(--c5)"></i>Programming and DevOps</h3><p>Python, SQL, TypeScript, Next.js, JavaScript, HTML and CSS, Streamlit, pytest, uv, Git, GitHub Actions, Docker.</p></div>
       <div><h3><i style="background:var(--muted)"></i>Languages and ways of working</h3><p>English (C2), Hindi and Marathi (native), German (basic). Clear communication, critical thinking, problem-solving, adaptability.</p></div>
     </div>
   </section>
@@ -306,12 +306,12 @@ footer { padding: 28px 0 48px; color: var(--muted); font-size: 0.9rem; }
     <div class="contact">
       <h2 class="title">Let's talk</h2>
       <p class="measure">I am looking for a role where AI meets real business processes: AI engineering, LLM agents, or business intelligence in manufacturing, supply chain, finance or enterprise analytics.</p>
-         GitHub: <a href="https://github.com/MinalBorse">github.com/MinalBorse</a><br>
+      <p>GitHub: <a href="https://github.com/MinalBorse">github.com/MinalBorse</a><br>
          Location: Nordenham, Germany · eligible to work in the EU</p>
     </div>
   </section>
   </main>
-  <footer>The Werk Nord data is synthetic, generated with planted stories so the systems can be measured. All other figures are from my work.</footer>
+  <footer>The Werk Nord and NordCart data is synthetic, generated with planted stories so the systems can be measured. All other figures are from my work.</footer>
 </div>
 
 <script>
@@ -342,7 +342,7 @@ const CAREER = [                                                  // start and e
   { row: 5, kind: "work", short: "Cuponation · product data analyst", title: "Product Data Analyst II", where: "Cuponation GmbH, Munich", from: 2022.08, to: 2023.5, when: "02/2022 to 06/2023", points: ["Cleaned and structured raw data with SQL, PySpark and Python (Zeppelin, DataGrip) from AWS Athena and Amazon Redshift Spectrum: data quality +30 %, insights that drove business strategy decisions.", "Created 20+ automated Tableau visualisations and A/B testing frameworks; cohort analysis and causal inference to surface churn risk.", "Worked with 6 stakeholders across product, SEO and marketing to define KPIs and build reports, dashboards and presentations.", "Built hypertables with IntelliJ IDEA for large datasets, and tracked changes with Git on Bitbucket and GitHub together with the data engineers."] },
   { row: 6, kind: "work", short: "Zeiss Digital Partners · product owner", title: "Product Owner and Data Analyst", where: "Zeiss Digital Partners, Munich", from: 2023.5, to: 2023.83, when: "07/2023 to 10/2023", points: ["In-depth data analysis in production, supply chain management, intralogistics, customer 360 and operations to enable digitalisation.", "Connected SAP ERP and CRM data, defined user-oriented KPIs, and delivered insights through visualisations and exploratory analysis in Azure Synapse Analytics.", "Presented a roadmap, timeline and budget that secured project approval."] },
   { row: 7, kind: "work", short: "Coster · BI specialist", title: "Business Intelligence Specialist", where: "Coster Special Technologies S.p.A., Milan", from: 2024.17, to: 2026.5, when: "03/2024 to 06/2026", points: ["15+ interactive SAP Analytics Cloud dashboards (Analytics Designer, Datasphere) across finance, supply chain, logistics, procurement, HR and manufacturing.", "ETL pipelines and ABAP CDS data models (VDM) on SAP BW and S/4HANA: queries up to 90 % faster.", "Python and scikit-learn workflows for predictive risk assessment of key operational metrics.", "Partnered with internal and international teams to define KPI logic and standard user-story templates; JIRA data requests resolved 50 % faster.", "Real-time visibility into production volume, stock levels and schedule compliance: decision-making 70 % faster.", "100 % user adoption of self-service analytics through global training sessions in 5+ countries and complete SAC user manuals."] },
-  { row: 8, kind: "ai", short: "Turing College · AI engineering", title: "AI Engineering Bootcamp", where: "Turing College, remote", from: 2026.67, to: 2027.0, when: "09/2026 to 12/2026", points: ["Production-style LLM systems, each evaluated against ground truth and secured with guardrails and tests.", "Built the Werk Nord Control Tower: 19 AI copilots, cause chains across 32 departments, governance and human approval."] },
+  { row: 8, kind: "ai", short: "Turing College · AI engineering", title: "AI Engineering Bootcamp", where: "Turing College, remote", from: 2026.67, to: 2027.0, when: "09/2026 to 12/2026", points: ["Production-style LLM systems, each evaluated against ground truth and secured with guardrails and tests.", "Built the Werk Nord Control Tower: 19 AI copilots, cause chains across 32 departments, governance and human approval.", "Built five more evaluated LLM apps: Ask Your Data, Insight Crew, Feedback Lens, Portfolio Pilot and 18P Analyst (multi-agent second opinion, human-in-the-loop, 135 automated tests)."] },
 ];
 const T = "https://github.com/MinalBorse/control-tower/tree/main/specialists/";
 const DIVISIONS = [
@@ -371,10 +371,11 @@ const DIVISIONS = [
     ["Business Functions", T + "business-functions-copilot", "Marketing, R&D, quality, HR, safety, energy, procurement, service and IT."]] },
 ];
 const TOPICS = { ai: ["AI agents", "--c1"], bi: ["BI and data", "--c2"], sap: ["SAP", "--c3"], trust: ["Privacy and fairness", "--c4"], apps: ["Apps", "--c5"] };
-const PROJECTS = [  // name, link, type, topic, what it does, headline [bar length 0-100 or null, exact text to show], more results
-  ["Ask Your Data", "https://github.com/MinalBorse/Ask-Your-Data", "Conversational BI analyst", "ai", "A LangGraph ReAct agent with 9 tools (SQL, charts, anomaly detection, hybrid RAG, memory) over 80,000 orders, with human-approved plans and 6 security layers.", [100, "100 % routing accuracy"], "Tool selection 92 %, faithfulness 0.96; few-shot beat chain-of-thought for text-to-SQL (88 % vs 25 %)."],
-  ["Insight Crew", "https://github.com/MinalBorse/Report-Insignt-Crew", "Multi-agent weekly reports", "ai", "Planner, parallel analysts, writer and critic agents with code-verified KPIs, human review, and PDF, Slack and email delivery via GitHub Actions.", [100, "9 of 9 planted errors caught"], "Compared with a single agent: similar quality at 10 times the cost."],
-  ["Feedback Lens", "https://github.com/MinalBorse/Customer-Intelligence-Feedback-lens", "Multilingual feedback intelligence", "ai", "Cleans (PII removal, injection quarantine), classifies, embeds and clusters 5,000+ reviews in 4 languages, with a citation-verified Q&A agent.", [95, "95 % sentiment accuracy"], "Topic F1 0.92, 0.03 USD per 1,000 reviews."],
+const PROJECTS = [  // name, link (null = private), type, topic, what it does, headline [bar length 0-100 or null, exact text to show], more results
+  ["18P Analyst", null, "AI investment research assistant", "ai", "My own 18-point stock analysis and valuation frameworks as an everyday app: a ReAct agent with 13 read-only tools and custom middleware, a parallel bull-versus-bear multi-agent second opinion, RAG over SEC annual reports, human approval before any paid action, multi-user login and an Interactive Brokers tax book.", [92, "92 % tool selection"], "Faithfulness 0.97, 6 of 6 live attacks defended, 135 tests. Private repository, demo on request."],
+  ["Ask Your Data", "https://github.com/MinalBorse/Ask-Your-Data", "Conversational BI analyst", "ai", "A LangGraph ReAct agent with 9 tools (SQL, charts, anomaly detection, hybrid RAG, memory) over 80,000 orders, with human-approved plans and 6 security layers.", [100, "100 % routing accuracy"], "Tool selection 92 %, faithfulness 0.96; few-shot beat chain-of-thought for text-to-SQL (88 % vs 25 %); 43 tests."],
+  ["Insight Crew", "https://github.com/MinalBorse/Report-Insignt-Crew", "Multi-agent weekly reports", "ai", "Planner, parallel analysts, writer and critic agents with code-verified KPIs, human review, and PDF, Slack and email delivery via GitHub Actions.", [100, "9 of 9 planted errors caught"], "Compared with a single agent: similar quality at 10 times the cost; 18 tests."],
+  ["Feedback Lens", "https://github.com/MinalBorse/Customer-Intelligence-Feedback-lens", "Multilingual feedback intelligence", "ai", "Cleans (PII removal, injection quarantine), classifies, embeds and clusters 5,000+ reviews in 4 languages, with a citation-verified Q&A agent.", [95, "95 % sentiment accuracy"], "Topic F1 0.92, 0.03 USD per 1,000 reviews; 16 of 16 prompt injections caught."],
   ["SAP Process Mining Assistant", "https://github.com/MinalBorse/SAP-Process-Mining-Assistant", "Order-to-cash optimisation", "sap", "Builds event logs from SAP order-to-cash tables, finds where the process loses time and money, tests root causes and simulates fixes with AI agents.", [97, "97 % evaluation score"], "Live demo."],
   ["Tableau to Power BI Migration Assistant", "https://github.com/MinalBorse/Migration-Assistant-Tableau-to-PowerBI-", "AI migration agent", "bi", "A LangGraph agent that reads Tableau workbooks, translates formulas to DAX, self-checks and fixes errors, maps visuals and exports reports, with human approval.", [100, "100 % on 33 test cases"], "71 tests, public demo."],
   ["AI Governance and Fairness Auditor", "https://github.com/MinalBorse/AI-Fairness-Auditor", "Responsible AI audit", "trust", "Audits AI decision systems such as loan models for discrimination, separates legitimate from unfair gaps, detects hidden proxies, writes the audit with five agents.", [94, "94 % evaluation score"], "EU AI Act."],
@@ -384,7 +385,7 @@ const PROJECTS = [  // name, link, type, topic, what it does, headline [bar leng
   ["DB Delay Radar", "https://github.com/MinalBorse/DB-Bahn-Delay-Radar", "Deutsche Bahn delay analytics", "bi", "A DB Timetables API collector and nationwide stop archive on DuckDB; weather impact, delay propagation and a gradient-boosting delay-risk model.", [74, "AUC 0.74 (simulated)"], "68 tests."],
   ["Excel to Power BI Migration Agent", "https://github.com/MinalBorse/Excel-to-PowerBI", "BI migration", "bi", "Migrates Excel reports to Power BI with DAX, with the numbers verified against Excel.", [null, "Live demo"], ""],
   ["SAP BI Assistant", "https://github.com/MinalBorse/SAP-BI-Assistance", "RAG chatbot", "sap", "A RAG chatbot on SAP ERP data.", [null, ""], ""],
-  ["Portfolio Pilot", "https://github.com/MinalBorse/Portfolio-Pilot", "Investment analytics", "apps", "Investment analytics.", [null, ""], ""],
+  ["Portfolio Pilot", "https://github.com/MinalBorse/Portfolio-Pilot", "Long-term investment analytics", "apps", "Time- and money-weighted returns (TWR, XIRR), ETF look-through, Monte Carlo goal projections, crisis stress tests and German fund tax; Signal Lab backtests buy/sell rules after fees and tax with no look-ahead bias; a LangGraph assistant whose numbers are checked by code.", [null, "70/30 out-of-sample tests"], "11 typed tools, 23 tests."],
 ];
 
 // ---------------------------------------------------------------------
@@ -472,7 +473,7 @@ function drawMultiples() {
 function drawProjects(filter = "all") {
   const tb = document.querySelector("#register tbody");
   tb.innerHTML = PROJECTS.filter(p => filter === "all" || p[3] === filter).map(([n, href, type, topic, what, [bar, headline], more]) => `
-    <tr><td><span class="dot" style="background:var(${TOPICS[topic][1]})"></span><a href="${href}">${n}</a><span class="type">${type}</span></td>
+    <tr><td><span class="dot" style="background:var(${TOPICS[topic][1]})"></span>${href ? `<a href="${href}">${n}</a>` : `<span class="name">${n}</span>`}<span class="type">${type}</span></td>
       <td>${what}</td>
       <td class="metric">${headline ? `<b>${headline}</b>` : ""}${bar !== null ? `<div class="mini"><span style="width:${bar}%;background:var(${TOPICS[topic][1]})"></span></div>` : (headline ? "<br>" : "")}${more}</td></tr>`).join("");
 }
